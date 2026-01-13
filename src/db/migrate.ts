@@ -14,12 +14,12 @@ const runMigrations = async () => {
 
     console.log("Migration successful!");
 
-    // Fecha todas as conexões do pool
-    await pool.end();
   } catch (err) {
     console.error("❌ Migration failed!");
     console.error(err);
     process.exit(1); // Sai com código de erro
+  } finally {
+    await pool.end();     // Fecha todas as conexões do pool
   }
 };
 
